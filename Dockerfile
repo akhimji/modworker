@@ -9,4 +9,5 @@ RUN yum install -y ftp://mirror.switch.ch/pool/4/mirror/epel/7/x86_64/p/perl-Nag
 RUN rm -rf /tmp/VMware*
 RUN VAR1=`PERL_LWP_SSL_VERIFY_HOSTNAME=0` && \
     export VAR1
+ADD worker.conf /etc/mod_gearman/worker.conf
 CMD ["mod_gearman_worker", "--logmode=stdout", "--config=/etc/mod_gearman/worker.conf"]
