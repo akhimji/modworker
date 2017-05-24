@@ -10,4 +10,6 @@ RUN rm -rf /tmp/VMware*
 RUN VAR1=`PERL_LWP_SSL_VERIFY_HOSTNAME=0` && \
     export VAR1
 ADD worker.conf /etc/mod_gearman/worker.conf
+RUN mkdir -p /usr/lib64/nagios/plugins
+ADD plugins.tar.gz /usr/lib64/nagios/plugins/
 CMD ["mod_gearman_worker", "--logmode=stdout", "--config=/etc/mod_gearman/worker.conf"]
