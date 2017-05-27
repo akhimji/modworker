@@ -12,4 +12,10 @@ RUN VAR1=`PERL_LWP_SSL_VERIFY_HOSTNAME=0` && \
 ADD worker.conf /etc/mod_gearman/worker.conf
 RUN mkdir -p /usr/lib64/nagios/plugins
 ADD plugins.tar.gz /usr/lib64/nagios/plugins/
+RUN useradd gearmand
+RUN ["chown", "-R", "gearmand:gearmand", "/usr/lib64/nagios"]
+RUN ["chown", "-R", "gearmand:gearmand", "/etc/mod_gearman"]
+RUN ["chown", "-R", "gearmand:gearmand", "/usr/bin/mod_gearman_worker"]
+RUN ["chmod", "777", "/usr/bin/mod_gearman_worker"]
+USER geramand
 CMD ["mod_gearman_worker", "--logmode=stdout", "--config=/etc/mod_gearman/worker.conf"]
