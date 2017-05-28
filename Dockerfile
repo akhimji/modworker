@@ -17,5 +17,5 @@ RUN ["chown", "-R", "gearmand:gearmand", "/usr/lib64/nagios"]
 RUN ["chown", "-R", "gearmand:gearmand", "/etc/mod_gearman"]
 RUN ["chown", "-R", "gearmand:gearmand", "/usr/bin/mod_gearman_worker"]
 RUN ["chmod", "777", "/usr/bin/mod_gearman_worker"]
-USER geramand
+USER gearmand
 CMD ["mod_gearman_worker", "--logmode=stdout", "--config=/etc/mod_gearman/worker.conf"]
